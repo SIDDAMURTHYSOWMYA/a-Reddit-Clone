@@ -9,7 +9,7 @@ pipeline{
    SCANNER_HOME = tool 'sonar-scanner' 
     APP_NAME = "reddit-clone-app"
     RELEASE = "1.0.0"
-    DOCKER_USER = "siddamurthyreddysowmya"
+    DOCKER_USER = "siddamurthysowmya"
     DOCKER_PASS = 'dockerhub'
     IMAGE_NAME = "${DOCKER_USER}" + "/" "${APP_NAME}"
     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -22,7 +22,7 @@ pipeline{
     }
     stage('checkout from Git') {
       steps {
-        git branch: 'main', url:https://github.com/SIDDAMURTHYSOWMYA/a-Reddit-Clone.git
+        git branch: 'main', url: 'https://github.com/SIDDAMURTHYSOWMYA/a-Reddit-Clone.git'
   }
 }
     stage("sonarqube Analysis") {
@@ -35,7 +35,7 @@ pipeline{
 stage("Quality Gate") {
   steps {
     script {
-      waitforQualityGate abortpipeline: false CredientialsId: 'SonarQube-Token'
+      waitforQualityGate abortpipeline: false CredientialsId: 'sonarQube-Token'
     }
   }
 }
